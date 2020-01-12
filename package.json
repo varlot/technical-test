@@ -1,0 +1,23 @@
+{
+  "name": "technical-test",
+  "version": "1.0.0",
+  "description": "If you want to apply as a software engineer at Lalilo you are in the right spot!",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon src/index.js",
+    "test-level": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varlot/technical-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/varlot/technical-test/issues"
+  },
+  "homepage": "https://github.com/varlot/technical-test#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
