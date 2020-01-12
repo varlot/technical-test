@@ -14,7 +14,7 @@ switch (level) {
     studentSample = [0,1,2,3,4];
     break;
   case '2':
-    studentSample = [];
+    studentSample = [5];
     break;
   case '3':
     studentSample = [];

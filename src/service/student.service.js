@@ -18,9 +18,23 @@ const getLastActivity = function(student) {
   }
 };
 
+const getStudentActivities = function(traces) {
+  if (!traces || !traces.length) {
+    return [];
+  }
+  const activityIds = traces.map((trace) => trace.activity_id);
+  return getActivitiesById(activityIds);
+}
+
+const activitiesWithoutAchieved = function(activities, traces) {
+  const studentActivities = getStudentActivities(traces);
+  const studentActivitiesIds = studentActivities.map((activity) => activity.id);
+  return activities.filter((activity) => !studentActivitiesIds.includes(activity.id))
+}
+
 exports.getMostRelevantActivity = function(student) {
   // filter activities by student language
-  const poolStudentActivities = getActivitiesByLanguage(student.language);
+  let poolStudentActivities = getActivitiesByLanguage(student.language);
 
   if (!poolStudentActivities.length) {
     throw 'No activities available for student';
@@ -39,6 +53,8 @@ exports.getMostRelevantActivity = function(student) {
     throw 'You did the final activity of the list, congrats!';
   }
   else {
+    // remove achieved activities
+    poolStudentActivities = activitiesWithoutAchieved(poolStudentActivities, student.traces);
     // if student has never done any activity, take first activity with the lowest level
     const studentLevel = lastActivity ? getActivityById(lastActivity.activity_id).level : 1;
     const activitiesLowerLevel = getActivitiesFromNextLowerLevel(poolStudentActivities, studentLevel);
@@ -48,10 +64,8 @@ exports.getMostRelevantActivity = function(student) {
     }
 
     // student achieved activities
-    const finishedActivityIds = student.traces
-      .filter((trace) => trace.score == 1)
-      .map((trace) => trace.activity_id);
-    const finishedActivities = getActivitiesById(finishedActivityIds);
+    const finishedActivityTraces = student.traces.filter((trace) => trace.score == 1);
+    const finishedActivities = getStudentActivities(finishedActivityTraces);
 
     if (finishedActivities.length) {
       // last achieved activity in traces

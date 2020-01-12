@@ -65,5 +65,21 @@
         "score": 0.5
       }
     ]
+  },
+  {
+    "id": 5,
+    "description": "Student with last exercise not achieved (level 2), first activity level 1 already achieved, take other level 1 activity",
+    "expectedActivityId": "4527",
+    "language": "EN",
+    "traces": [
+      {
+        "activity_id": 409,
+        "score": 0.5
+      },
+      {
+        "activity_id": 1382,
+        "score": 0.5
+      }
+    ]
   }
 ]
