@@ -3,9 +3,9 @@
 const activityService = require('./activity.service.js');
 const studentDA = require('../data-access/student.js');
 const getActivityById = activityService.getActivityById;
-const getActivitiesByLanguage = activityService.getActivitiesByLanguage;
 const getActivitiesFromNextLowerLevel = activityService.getActivitiesFromNextLowerLevel;
 const getActivitiesById = activityService.getActivitiesById;
+const getAllActivities = activityService.getAllActivities;
 const getStudentByIds = studentDA.getStudentByIds;
 
 exports.getStudentSample = function(studentIds) {
@@ -32,9 +32,29 @@ const activitiesWithoutAchieved = function(activities, traces) {
   return activities.filter((activity) => !studentActivitiesIds.includes(activity.id))
 }
 
+const removeReadingActivity = function(activities) {
+  const activitiesWithoutReading = activities.filter((activity) => !(activity.exercise_type == 'reading'));
+  if (!activitiesWithoutReading.length) {
+    throw 'Sorry, no activity available without microphone';
+  }
+  return activitiesWithoutReading;
+}
+
+const getPoolStudentActivities = function(student) {
+  let microphoneHandledActivities = getAllActivities();
+  // remove reading activity if student has no microphone
+  if (!student.hasOwnProperty('microphone') || !student.microphone) {
+    microphoneHandledActivities = removeReadingActivity(microphoneHandledActivities);
+  }
+
+  // filter activities by student language
+  const activitiesByLanguage = microphoneHandledActivities.filter((activity) => activity.language == student.language);
+  return activitiesByLanguage;
+}
+
 exports.getMostRelevantActivity = function(student) {
   // filter activities by student language
-  let poolStudentActivities = getActivitiesByLanguage(student.language);
+  let poolStudentActivities = getPoolStudentActivities(student);
 
   if (!poolStudentActivities.length) {
     throw 'No activities available for student';

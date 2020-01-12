@@ -71,6 +71,41 @@
     "description": "Student with last exercise not achieved (level 2), first activity level 1 already achieved, take other level 1 activity",
     "expectedActivityId": "4527",
     "language": "EN",
+    "microphone": true,
+    "traces": [
+      {
+        "activity_id": 409,
+        "score": 0.5
+      },
+      {
+        "activity_id": 1382,
+        "score": 0.5
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "description": "Student with microphone",
+    "expectedActivityId": "4527",
+    "language": "EN",
+    "microphone": true,
+    "traces": [
+      {
+        "activity_id": 409,
+        "score": 0.5
+      },
+      {
+        "activity_id": 1382,
+        "score": 0.5
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "description": "Student without microphone",
+    "expectedActivityId": "360",
+    "language": "EN",
+    "microphone": false,
     "traces": [
       {
         "activity_id": 409,

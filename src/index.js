@@ -17,7 +17,7 @@ switch (level) {
     studentSample = [5];
     break;
   case '3':
-    studentSample = [];
+    studentSample = [6,7];
     break;
   default:
     console.log('Please enter level number between 1 and 5');
@@ -25,7 +25,7 @@ switch (level) {
 
 if (level) {
   const students = getStudentSample(studentSample);
-  console.log(`-------Level ${level}-------`, students.length);
+  console.log(`-------Level ${level}-------`);
   students.forEach(student => {
     try {
       console.log(`Student ${student.id} : ${student.description}, expected activity id : ${student.expectedActivityId}`);

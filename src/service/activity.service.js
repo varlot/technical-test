@@ -10,6 +10,10 @@ exports.getActivitiesFromNextLowerLevel = function(activities, level) {
   return activities.filter((activity) => activity.level == (level - 1));
 };
 
+exports.getAllActivities = function(id) {
+  return activityDA.getAllActivities();
+}
+
 exports.getActivityById = function(id) {
   return activityDA.getActivityById(id);
 }
@@ -17,7 +21,3 @@ exports.getActivityById = function(id) {
 exports.getActivitiesById = function(ids) {
   return activityDA.getActivitiesById(ids);
 }
-
-exports.getActivitiesByLanguage = function(language) {
-  return activityDA.getActivitiesByLanguage(language);
-};
