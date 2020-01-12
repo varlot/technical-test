@@ -1,0 +1,69 @@
+[
+  {
+    "id": 0,
+    "description": "Student without trace, take first activity in list with the lowest level",
+    "expectedActivityId": "36371",
+    "language": "FR",
+    "traces": []
+  },
+  {
+    "id": 1,
+    "description": "Student achieved one exercise perfectly, take next in line activity",
+    "expectedActivityId": "319500",
+    "language": "FR",
+    "traces": [
+      {
+        "activity_id": 319199,
+        "score": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "description": "Student achieved last exercise perfectly which is the last activity (considering all activities were achieved)",
+    "expectedActivityId": "No more activity",
+    "language": "EN",
+    "traces": [
+      {
+        "activity_id": 181268,
+        "score": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "description": "Student with last exercise not achieved (level 2), take first activity level 1",
+    "expectedActivityId": "409",
+    "language": "EN",
+    "traces": [
+      {
+        "activity_id": 182,
+        "score": 0.5
+      },
+      {
+        "activity_id": 1382,
+        "score": 0.5
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "description": "Student with last exercise not achieved (level 0) and other activities achieved, take last achieved activity",
+    "expectedActivityId": "39905",
+    "language": "EN",
+    "traces": [
+      {
+        "activity_id": 347105,
+        "score": 1
+      },
+      {
+        "activity_id": 39905,
+        "score": 1
+      },
+      {
+        "activity_id": 4605,
+        "score": 0.5
+      }
+    ]
+  }
+]

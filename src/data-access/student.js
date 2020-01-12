@@ -1,11 +1,11 @@
 "use strict";
 
-const students = require('./data/students.json');
+const students = require('../data/students.json');
 
 const getAllStudents = function() {
   return students;
 }
 
-const getStudentByIds = function(ids) {
-  return [];
+exports.getStudentByIds = function(ids) {
+  return getAllStudents().filter((student) => ids.includes(student.id));
 }
